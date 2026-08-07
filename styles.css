@@ -1,6 +1,6 @@
 :root {
-  --cream:      #FBF8EF;  /* the ONE background — the whole page, no more alternating sections */
-  --teal:       #2E7C74;  /* the one accent — headings, labels, links, buttons */
+  --cream:      #FBF8EF;  /* background — the whole page, no more alternating sections */
+  --teal:       #2E7C74;  /* accent — headings, labels, links, buttons */
   --teal-soft:  rgba(46, 124, 116, 0.14);  /* subtle teal tint for badge/pill backgrounds */
   --ink:        #2B2118;  /* body copy — kept dark for readability, not decorative */
   --ink-soft:   rgba(43, 33, 24, 0.62);
@@ -23,7 +23,6 @@
   --container: 1160px;
   --ease: cubic-bezier(.16, 1, .3, 1);
 }
- 
  
 /* =========================================================
    RESET & BASE
@@ -391,26 +390,35 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
 .song-float-btn.is-playing .song-play-icon { display: none; }
 .song-float-btn.is-playing .song-pause-icon { display: block; }
 
+.about .section-title {
+  margin-bottom: var(--space-6);
+}
+
 .hero-intro-label {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.6rem;
-  margin-bottom: 4px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  line-height: 1;
+  margin-bottom: 6px;
   color: var(--teal);
 }
 
-.about-me-label {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.about-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
   color: var(--teal);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-5);
 }
- 
-.about-bio { font-size: 1.05rem; max-width: 46ch; margin-bottom: var(--space-5); color: var(--ink-soft); }
- 
+
+.about-bio {
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: var(--space-5);
+  color: var(--ink-soft);
+}
  
 /* =========================================================
    SKILLS & CERTS
@@ -480,11 +488,6 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
  
 /* =========================================================
    PROJECT SHOWCASE
-   Each project is a full-width row — a strong visual on one
-   side, everything a visitor needs to decide whether to click
-   through on the other: title, one-line pitch, a few quick
-   facts, and a single clear CTA. Rows stack with generous
-   space between them rather than living in a boxed grid.
    ========================================================= */
 
 .work-showcase {
@@ -500,29 +503,64 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
   align-items: center;
 }
 
-.project:nth-child(2n) .project-media { order: 2; }
-.project:nth-child(2n) .project-info { order: 1; }
+/* alternate image/video placement */
+.project:nth-child(2n) .project-media {
+  order: 2;
+}
+
+.project:nth-child(2n) .project-info {
+  order: 1;
+}
+
+
+/* ---- PROJECT IMAGE / VIDEO FRAME ---- */
 
 .project-media {
   position: relative;
+  width: 100%;
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 14px 34px rgba(0,0,0,0.14);
+  background: var(--teal-soft);
+
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
 }
-.project-media img {
+
+/* images + videos use the same frame */
+.project-media img,
+.project-media video {
   width: 100%;
   height: 100%;
   max-height: 420px;
+
   object-fit: cover;
-  object-position: top;
+  object-position: center;
+
   display: block;
 }
 
+/* Rip. Dip. Reset. video */
+.project-video {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+
+  object-fit: cover;
+  object-position: center;
+
+  display: block;
+}
+
+
+/* ---- PROJECT TEXT ---- */
+
 .project-kicker {
-  font-family: var(--font-mono); font-weight: 700;
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.75rem;
+
   text-transform: uppercase;
   letter-spacing: 0.08em;
+
   color: var(--ink-soft);
   margin-bottom: var(--space-1);
 }
@@ -531,6 +569,7 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
   font-family: var(--font-body);
   font-size: 1.6rem;
   font-weight: 700;
+
   color: var(--teal);
   margin-bottom: var(--space-2);
 }
@@ -538,190 +577,494 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
 .project-desc {
   font-size: 1.02rem;
   color: var(--ink-soft);
+
   max-width: 42ch;
   margin-bottom: var(--space-3);
 }
+
+
+/* ---- ROLE / TOOLS / SKILLS ---- */
 
 .project-meta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
+
   list-style: none;
   margin-bottom: var(--space-4);
 }
+
 .project-meta li {
   font-size: 0.88rem;
   color: var(--ink);
 }
+
 .project-meta-label {
   display: block;
-  font-family: var(--font-mono); font-weight: 700;
+
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.68rem;
+
   text-transform: uppercase;
   letter-spacing: 0.07em;
+
   color: var(--teal);
   margin-bottom: 2px;
 }
 
+
+/* ---- VIEW PROJECT BUTTON ---- */
+
 .case-link {
   display: inline-flex;
-  font-family: var(--font-mono); font-weight: 700;
+  align-items: center;
+
+  font-family: var(--font-mono);
+  font-weight: 700;
   font-size: 0.82rem;
+
   text-transform: uppercase;
   letter-spacing: 0.05em;
+
   color: var(--teal);
+
   border: 1.5px solid var(--teal);
   border-radius: 999px;
+
   padding: 10px 22px;
-  transition: background 0.3s var(--ease), color 0.3s var(--ease);
+
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    transform 0.3s var(--ease);
 }
-.case-link:hover { background: var(--teal); color: var(--cream); }
+
+.case-link:hover {
+  background: var(--teal);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PROJECTS — MOBILE
+   ========================================================= */
 
 @media (max-width: 800px) {
-  .project,
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  /* stop alternating sides on mobile */
   .project:nth-child(2n) .project-media,
   .project:nth-child(2n) .project-info {
-    grid-template-columns: 1fr;
     order: initial;
   }
-  .project { display: flex; flex-direction: column; }
-  .project-media img { max-height: 280px; }
-}
- 
 
- 
-/* =========================================================
+  .project-media {
+    width: 100%;
+  }
+
+  .project-media img,
+  .project-media video,
+  .project-video {
+    width: 100%;
+    max-height: 320px;
+  }
+}
+ /* =========================================================
+   RESUME
+   ========================================================= */
+
+.resume {
+  background: var(--cream);
+}
+
+/* Same left alignment as Work / Skills / About */
+.resume .section-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.resume .section-title {
+  margin-bottom: var(--space-5);
+}
+
+.resume-content {
+  width: 100%;
+}
+
+.resume-summary {
+  max-width: 760px;
+  margin-bottom: var(--space-5);
+
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+
+.resume-grid {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: var(--space-6);
+
+  max-width: 900px;
+  margin-bottom: var(--space-5);
+}
+
+.resume-label {
+  margin-bottom: var(--space-3);
+
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--teal);
+}
+
+.resume-skills ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.resume-skills li {
+  color: var(--ink);
+}
+
+.resume-job {
+  margin-bottom: var(--space-4);
+}
+
+.resume-job h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 3px;
+}
+
+.resume-company {
+  margin-bottom: 8px;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.resume-education {
+  margin-bottom: var(--space-5);
+}
+
+.resume-education h3 {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 4px;
+}
+
+.resume-education-date {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.resume-tools-label {
+  margin-top: var(--space-4);
+  margin-bottom: 10px;
+}
+
+.resume-tools {
+  max-width: 28ch;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+.resume-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+
+  max-width: 100%;
+  margin-bottom: var(--space-4);
+
+  align-items: start;
+}
+
+.resume-left,
+.resume-right {
+  display: flex;
+  flex-direction: column;
+}
+
+.resume-education {
+  margin-bottom: var(--space-6);
+}
+
+.resume-experience {
+  margin-top: 0;
+}
+
+.resume-link {
+  display: inline-flex;
+  width: fit-content;
+  height: fit-content;
+
+  margin-top: var(--space-3);
+
+  justify-self: start;
+  align-self: start;
+}
+
+@media (max-width: 700px) {
+  .resume-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+
+ /* =========================================================
    CONTACT
    ========================================================= */
+
 .contact {
   position: relative;
-  z-index: 0;
   padding: var(--space-7) var(--space-3);
   background: var(--cream);
   color: var(--ink-soft);
-  text-align: center;
+
+  /* IMPORTANT:
+     no z-index: 0 here — lets the content sit above
+     your decorative clouds/sun */
 }
 
 .contact-container {
   width: min(100%, 1100px);
   margin: 0 auto;
+
   position: relative;
   z-index: 2;
 }
 
+
+/* ---------- HEADING ---------- */
+
+.contact-heading {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
 .contact h2 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  margin: 0 0 22px;
+
+  font-family: var(--font-heading);
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
   font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.01em;
+  line-height: 0.95;
+
   color: var(--teal);
 }
 
 .contact-intro {
-  margin: 16px 0 48px;
-  font-size: clamp(1.05rem, 2vw, 1.4rem);
+  width: min(100%, 900px);
+  margin: 0 auto;
+
+  text-align: center;
+
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  line-height: 1.5;
+
   color: var(--ink-soft);
 }
+
+
+/* ---------- FORM AREA ---------- */
+
+.contact-main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+/* LinkedIn now lines up EXACTLY with the form */
+
+.contact-secondary {
+  width: min(100%, 760px);
+  margin: 0 auto 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 9px;
+
+  font-size: 0.95rem;
+}
+
+.contact-secondary span {
+  color: var(--ink-soft);
+}
+
+.contact-secondary a {
+  color: var(--teal);
+  font-weight: 700;
+
+  border-bottom: 1px solid currentColor;
+  transition: opacity 0.25s var(--ease);
+}
+
+.contact-secondary a:hover {
+  opacity: 0.7;
+}
+
+
+/* ---------- FORM ---------- */
 
 .contact-form {
   width: min(100%, 760px);
   margin: 0 auto;
+
   text-align: left;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 38px;
+  gap: 10px;
+
+  margin-bottom: 28px;
 }
 
 .form-group label {
   color: var(--teal);
-  font-family: var(--font-mono); font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: 0.06em;
+
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .form-group input,
 .form-group textarea {
   width: 100%;
-  border: 2px solid rgba(46, 124, 116, 0.2);
-  border-radius: 10px;
+
+  border: 1.5px solid rgba(46, 124, 116, 0.25);
+  border-radius: 12px;
+
   background: #fff;
   color: var(--ink);
+
   font: inherit;
+
   outline: none;
+
   padding: 18px 20px;
+
+  transition:
+    border-color 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
 }
 
 .form-group input {
-  min-height: 68px;
+  min-height: 62px;
 }
 
 .form-group textarea {
-  min-height: 165px;
+  min-height: 175px;
   resize: vertical;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   border-color: var(--teal);
+  box-shadow: 0 0 0 4px var(--teal-soft);
 }
 
+
+/* ---------- BUTTON ---------- */
+
 .contact-button {
-  min-height: 72px;
-  padding: 0 34px;
+  min-height: 58px;
+  padding: 0 28px;
+
   border: 0;
   border-radius: 999px;
+
   background: var(--teal);
   color: var(--cream);
-  cursor: pointer;
-  font-family: var(--font-mono); font-weight: 700;
-  font-size: 1.2rem;
+
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s var(--ease),
+    opacity 0.3s var(--ease);
 }
 
 .contact-button:hover {
-  opacity: 0.85;
+  opacity: 0.86;
   transform: translateY(-2px);
 }
 
-.contact-button:disabled {
-  opacity: 0.6;
-  cursor: default;
-  transform: none;
-}
+
+/* ---------- FORM RESPONSE ---------- */
 
 .form-status {
-  margin-top: 20px;
-  font-family: var(--font-mono); font-weight: 700;
-  font-size: 0.95rem;
-  letter-spacing: 0.03em;
   min-height: 1.2em;
-}
-.form-status--success { color: var(--teal); }
-.form-status--error { color: var(--form-error); }
+  margin-top: 20px;
 
-.direct-email {
-  margin-top: 95px;
-  text-align: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.95rem;
 }
 
-.contact-linkedin {
-  margin-top: 30px;
-}
-
-.contact-linkedin a {
-  font-size: 1rem;
+.form-status--success {
   color: var(--teal);
-  font-family: var(--font-mono); font-weight: 700;
-  border-bottom: 2px solid var(--teal);
 }
+
+.form-status--error {
+  color: var(--form-error);
+}
+
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+
+  .contact {
+    padding-left: var(--space-2);
+    padding-right: var(--space-2);
+  }
+
+  .contact-heading {
+    margin-bottom: 36px;
+  }
+
+  .contact-secondary {
+    flex-wrap: wrap;
+  }
+
+  .contact-button {
+    width: 100%;
+  }
+}
+
 
 .thread-anchor { width: 0; height: 0; }
 
