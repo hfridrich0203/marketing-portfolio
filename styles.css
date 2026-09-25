@@ -485,6 +485,55 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 .filter-pill.active, .filter-pill:hover { background: var(--teal); color: var(--cream); }
+
+.writing-sample {
+  margin-top: 1.5rem;
+  padding: 1rem 1.1rem;
+  border-left: 3px solid var(--teal);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.writing-sample-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.writing-sample-type {
+  margin: 0 0 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.writing-sample blockquote {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.rhetorical-strategy p {
+  margin: 0 0 0.8rem;
+  line-height: 1.55;
+}
+
+.rhetorical-strategy p:last-child {
+  margin-bottom: 0;
+}
+
+.rhetorical-strategy strong {
+  color: var(--teal);
+}
+
+.project-quote {
+  margin: 1.25rem 0 1.5rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--teal);
+  font-style: italic;
+  line-height: 1.55;
+}
  
 /* =========================================================
    PROJECT SHOWCASE
@@ -503,13 +552,56 @@ h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; color: var(--te
   align-items: center;
 }
 
-/* alternate image/video placement */
-.project:nth-child(2n) .project-media {
+/* =========================================================
+   ALTERNATING PROJECT LAYOUT
+   ========================================================= */
+
+.project {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+/* Odd projects: image left, writing right */
+.work-showcase > .project:nth-of-type(odd) .project-media {
+  order: 1;
+}
+
+.work-showcase > .project:nth-of-type(odd) .project-info {
   order: 2;
 }
 
-.project:nth-child(2n) .project-info {
+/* Even projects: writing left, image right */
+.work-showcase > .project:nth-of-type(even) .project-media {
+  order: 2;
+}
+
+.work-showcase > .project:nth-of-type(even) .project-info {
   order: 1;
+}
+
+/* Mobile: image first, writing second */
+@media (max-width: 800px) {
+  .project {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: stretch;
+  }
+
+  .work-showcase > .project .project-media,
+  .work-showcase > .project .project-info {
+    order: initial;
+  }
+
+  .work-showcase > .project .project-media {
+    order: 1;
+  }
+
+  .work-showcase > .project .project-info {
+    order: 2;
+  }
 }
 
 
